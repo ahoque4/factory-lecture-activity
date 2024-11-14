@@ -1,13 +1,18 @@
 package com.example;
-// TODO: Concrete VehicleFactory for Europe region
 
-public class USAVehicleFactory {
+public class USAVehicleFactory extends VehicleFactory {
 
-    /*
-     * TODO: Overrides VehicleFactory method to create region specific Vehicle instances
-     * Name: createVehicle()
-     * @param: region Region where the Vehicle is created (string)
-     * @param: vehicleType Type of Vehicle manufactured (VehicleType enum)
-     * @return the instance of the created Vehicle
-     */
+    @Override
+    public Vehicle createVehicle(String region, VehicleType vehicleType) {
+        switch (vehicleType) {
+            case CAR:
+                return new Car(region);
+            case TRUCK:
+                return new Truck(region);
+            case MOTORCYCLE:
+                return new Motorcycle(region);
+            default:
+                throw new IllegalArgumentException("Invalid vehicle type");
+        }
+    }
 }
